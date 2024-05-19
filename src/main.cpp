@@ -1,11 +1,12 @@
-#define LGFX_AUTODETECT
 
 #include <LovyanGFX.hpp>
 
 #include "lgfx_CUSTOMBOARD_conf.hpp"
 
-static LGFX lcd;                 // Instance of LGFX
-static LGFX_Sprite sprite(&lcd); // Instance of LGFX_Sprite when using sprites
+#include <LGFX_TFT_eSPI.hpp>
+
+static TFT_eSPI lcd;                 // Instance of LGFX
+static TFT_eSprite sprite(&lcd); // Instance of LGFX_Sprite when using sprites
 
 // If you are currently using TFT_eSPI and want to minimize changes to your
 // code, you can use this header.
