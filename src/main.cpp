@@ -1,5 +1,4 @@
 
-#include <LovyanGFX.hpp>
 
 #include "lgfx_CUSTOMBOARD_conf.hpp"
 
