@@ -8,22 +8,11 @@
 static TFT_eSPI lcd;                 // Instance of LGFX
 static TFT_eSprite sprite(&lcd); // Instance of LGFX_Sprite when using sprites
 
-// If you are currently using TFT_eSPI and want to minimize changes to your
-// code, you can use this header.
-
-//#include <LGFX_TFT_eSPI.hpp>
-//static TFT_eSPI lcd;               // TFT_eSPI is an alias for LGFX.
-//static TFT_eSprite sprite(&lcd);   // TFT_eSprite is alias for LGFX_Sprite
-
-
-// See examples/HowToUse/2_spi_setting.ino if you want to use it in a
-// configuration that is not available on compatible models. Copy
-// LGFX_Config_Custom.hpp in the config folder and edit to suit your environment.
-// Include here or paste the contents of the file as it is and use it.
-
 
 void setup(void)
 {
+  Serial.begin(115200);
+
   // First call the initialization function.
   lcd.init();
 
@@ -134,7 +123,7 @@ void setup(void)
   // Using DrawGradientLine you cannot omit the color specification
   lcd.drawGradientLine( 0, 80, 80, 0, 0xFF0000U, 0x0000FFU);// Red to blue
 
-  delay(1000);
+  delay(500);
 
   // You can fill the entire screen with clear or fillScreen.
   // fillScreen is the same as specifying the entire screen of fillRect, and
@@ -209,7 +198,7 @@ void setup(void)
   // All functions whose names start with write (writePixel, writeFastVLine,
   // writeFastHLine, writeFillRect) must explicitly call startWrite.
 
-  delay(1000);
+  delay(500);
 
   // Similar drawing functions can be used for drawing on sprites (offscreen).
   // First, specify the color depth of the sprite with setColorDepth. (If
@@ -250,7 +239,7 @@ void setup(void)
   // by specifying the output destination as the first argument.
   sprite.pushSprite(&lcd, 0, 64);  // SPI bus release
 
-  delay(1000);
+  delay(500);
 
   // You can rotate, scale, and draw sprites with pushRotateZoom.
   // The coordinates set by setPivot are treated as the center of rotation, and
@@ -270,7 +259,7 @@ void setup(void)
   }
   lcd.endWrite();
 
-  delay(1000);
+  delay(500);
 
   // Use deleteSprite to free memory for sprites that are no longer in use.
   sprite.deleteSprite();
@@ -304,13 +293,15 @@ void setup(void)
   sprite.pushSprite( 0, 65, 2); // Draw sprite with palette color 2 transparent
   sprite.pushSprite(65, 65, 3); // Draw sprite with palette color 3 transparent
 
-  delay(5000);
+  delay(1000);
 
   lcd.startWrite(); // StartWrite() here to keep the SPI bus occupied.
 }
 
-void loop(void)
-{
+void loop(void){
+
+  Serial.println("loop");
+
   static int count = 0;
   static int a = 0;
   static int x = 0;
